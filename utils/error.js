@@ -1,8 +1,3 @@
-const createError = (status,message)=>{
-    const err = new Error()
-    err.status = status;
-    err.message = message;
-    return err;
-}
+const globalError = "GLOBAL ERROR"
 
-module.exports = createError
+module.exports = {globalError}

@@ -2,12 +2,13 @@ const { hotelDetails } = require("../../models/hotelDetails.model.js");
 
 // Used to create Hotel
 async function createHotel(req, res, next) {
-  const newHotel = new hotelDetails(req.body);
+  
   try {
-    console.log("Inside Create Hotel");
-    console.log("Body", req.body);
-    console.log("New Hotel Data", newHotel);
-    const saveHotel = await newHotel.save();
+    const request = req.body;
+  console.log("Payload in request",req.body);
+  const mongoInsertion = await hotelDetails(req.body);
+    console.log("New Hotel Data", mongoInsertion   );
+    const saveHotel = await mongoInsertion.save();
     console.log("Saved Hotel Data", saveHotel);
     res.status(200).json({
       status: true,
@@ -55,7 +56,7 @@ async function updateHotel(req, res, next) {
 // Get all the hotel detail
 async function getHotel(req, res, next) {
   try {
-    const getHotel = await hotelDetails.find();
+    const getHotel = await hotelDetails.find({});
     console.log("Inside Get Hotel");
     console.log("Body", req.body);
     console.log("Get Hotel Data", getHotel);
